@@ -1,5 +1,18 @@
 // Assignment code here
 
+const chosenChars = [];
+
+var userPassword = "";
+// Lower Characters Array
+const lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+// Upper Characters Array
+const upper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+// Special characters Array
+const special = ['!','@','#','$','%','^','&','*','(',')','*','+',',','-','.','/',';',':','<','=','>','?','[',']','_','`','{','}','|','`'];
+// numbers array
+const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+
 function generatePassword() {
   var promptLength = parseInt(window.prompt('How many characters would you like your password to contain? Please choose between 8 - 128.'));
   if (promptLength < 8 || promptLength > 128 || promptLength === NaN ) {
@@ -9,6 +22,12 @@ function generatePassword() {
 
   characterConfirm();
 
+  for (var i = 0; i < promptLength; i++) {
+    var randomCharacters = (Math.floor(Math.random() * chosenChars));
+    userPassword += randomCharacters;
+    console.log(userPassword);
+  }
+  return;
 };
 
 function characterConfirm() {
@@ -24,49 +43,19 @@ function characterConfirm() {
     window.alert('You must choose a criteria!');
     generatePassword();
   }
-  
   if (uppercaseConfirm === true) {
-    getRandomUpper();
-    console.log(getRandomUpper())
+    chosenChars.concat(lower);
   }
-  
   if (lowercaseConfirm === true) {
-    getRandomLower();
-    console.log(getRandomLower())
+    chosenChars.concat(upper);
   }
-  
   if (numberConfirm === true) {
-    getRandomNumber();
-    console.log(getRandomNumber())
+    chosenChars.concat(numbers);
   }
-  
   if (symbolConfirm === true) {
-    getRandomSymbol();
-    console.log(getRandomSymbol())
+    chosenChars.concat(special);
   }
 };
-
-
-
-var getRandomLower = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-
-// generates random uppercase letter
-var getRandomUpper = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-
-// generates random number 0 - 9
-var getRandomNumber = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-
-// generates random symbol
-var getRandomSymbol = function() {
-  const symbols = '!@#$%^&*(){}[]=<>/,.'
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
