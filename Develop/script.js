@@ -1,9 +1,9 @@
 // Assignment code here
 function generatePassword() {
   // 1. prompt user for password critera
-  var promptLength = window.prompt('How many characters would you like your password to contain? Please choose between 8 - 128.');
+  var promptLength = parseInt(window.prompt('How many characters would you like your password to contain? Please choose between 8 - 128.'));
   //    a. password length 8 < 128
-  if (promptLength < 8 || promptLength > 128 ) {
+  if (promptLength < 8 || promptLength > 128 || promptLength === NaN ) {
     window.alert("You did not enter a valid number, please try again.");
     generatePassword();
   } else {
@@ -14,12 +14,31 @@ function generatePassword() {
     var numberConfirm = window.confirm('Would you like your password to contain numbers? If yes click OK.');
 
     var symbolConfirm = window.confirm('Would you like your password to contain symbols? If yes click OK.');
+
   } if (uppercaseConfirm === false && lowercaseConfirm === false && numberConfirm === false && symbolConfirm === false) {
     window.alert('You must choose a criteria!');
     generatePassword();
   }
 
-  return getRandomLower()
+  if (uppercaseConfirm === true) {
+    getRandomUpper();
+    console.log(getRandomUpper())
+  }
+
+  if (lowercaseConfirm === true) {
+    getRandomLower();
+    console.log(getRandomLower())
+  }
+
+  if (numberConfirm === true) {
+    getRandomNumber();
+    console.log(getRandomNumber())
+  }
+
+  if (symbolConfirm === true) {
+    getRandomSymbol();
+    console.log(getRandomSymbol())
+  }
 }
   //    b. Lowercase, Uppercase, Number, Symbol
 
