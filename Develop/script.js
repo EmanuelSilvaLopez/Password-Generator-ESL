@@ -1,6 +1,6 @@
 // Assignment code here
 
-const chosenChars = [];
+var chosenChars = [];
 
 var userPassword = "";
 // Lower Characters Array
@@ -15,7 +15,12 @@ const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function generatePassword() {
   var promptLength = parseInt(window.prompt('How many characters would you like your password to contain? Please choose between 8 - 128.'));
-  if (promptLength < 8 || promptLength > 128 || promptLength === NaN ) {
+
+  if (promptLength != (/^[0-9.,]+$/)) {
+    alert("this is not a number!")
+  }
+
+  if (promptLength < 8 || promptLength > 128 || promptLength === NaN) {
     window.alert("You did not enter a valid number, please try again.");
     generatePassword();
   };
@@ -23,11 +28,10 @@ function generatePassword() {
   characterConfirm();
 
   for (var i = 0; i < promptLength; i++) {
-    var randomCharacters = (Math.floor(Math.random() * chosenChars));
+    var randomCharacters = chosenChars[Math.floor(Math.random() * chosenChars.length)];
     userPassword += randomCharacters;
-    console.log(userPassword);
   }
-  return;
+  return userPassword;
 };
 
 function characterConfirm() {
@@ -44,16 +48,16 @@ function characterConfirm() {
     generatePassword();
   }
   if (uppercaseConfirm === true) {
-    chosenChars.concat(lower);
+    chosenChars = chosenChars.concat(lower);
   }
   if (lowercaseConfirm === true) {
-    chosenChars.concat(upper);
+    chosenChars = chosenChars.concat(upper);
   }
   if (numberConfirm === true) {
-    chosenChars.concat(numbers);
+    chosenChars = chosenChars.concat(numbers);
   }
   if (symbolConfirm === true) {
-    chosenChars.concat(special);
+    chosenChars = chosenChars.concat(special);
   }
 };
 
