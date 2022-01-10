@@ -16,8 +16,11 @@ const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 function generatePassword() {
   var promptLength = parseInt(window.prompt('How many characters would you like your password to contain? Please choose between 8 - 128.'));
 
-  if (promptLength != (/^[0-9.,]+$/)) {
+  var regEx = /^\d*$/;
+
+  if (!regEx.test(promptLength)) {
     alert("this is not a number!")
+    generatePassword();
   }
 
   if (promptLength < 8 || promptLength > 128 || promptLength === NaN) {
